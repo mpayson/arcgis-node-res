@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Simple 2D Layer</title>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.5/esri/css/main.css">
+  
+  <script src="https://js.arcgis.com/4.5/"></script>
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <script>
+    if(!window.WebSocket){
+      console.log("BROWSER DOES NOT SUPPORT WEB SOCKETS");
+    }
+  </script>
+
+  <script>
+    require([
+      "esri/Map",
+      "esri/views/MapView",
+      "esri/Graphic",
+      "esri/geometry/support/jsonUtils",
+      "dojo/domReady!"
+    ],
+    function(Map, MapView, Graphic, geometryJsonUtils) {
+      const MAXGRAPHICS = 10;
+
+      // Create map and add the layer
+      var map = new Map({
+        basemap: "topo-vector"
+      });
+      
+      // Create the MapView and add the map
+      var view = new MapView({
+        container: "viewDiv",  
+        map: map,    
+        center: [-73.967569, 40.727724],
+        zoom: 12
+      });
+
+      // Define the marker symbol
+      var markerSymbol = {
+        type: "simple-marker",
+        color: [226, 119, 40],
+        size: "8px"
+      };
+
+      // Init websocket and listen for updates
+      var ws = new WebSocket("ws://localhost:8080");
+      ws.onmessage = (event) => {
+        var feature = JSON.parse(event.data);
+        var geometry = geometryJsonUtils.fromJSON(feature.geometry);
+        view.graphics.add(new Graphic({
+          geometry: geometry,
+          symbol: markerSymbol,
+          attributes: feature.attributes
+        }));
+        if(view.graphics.length > MAXGRAPHICS){
+          view.graphics.shift();
+        }
+      };
+
+    });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>

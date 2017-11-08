@@ -1,0 +1,19 @@
+{
+  "name": "stream-service",
+  "version": "0.0.1",
+  "description": "stream-service sample",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "server": "node server.js"
+  },
+  "author": "mpayson",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "ws": "^3.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}
