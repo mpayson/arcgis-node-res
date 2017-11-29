@@ -1,16 +1,14 @@
-### Resources and Playground for ArcGIS & Node
+# ArcGIS Node Res
+> Quick ArcGIS Node resources from conversations and personal tinkering
 
-To get started:
+## Get Started
 
-`$ git clone https://github.com/mpayson/arcgis-node-res.git`
+```
+$ git clone https://github.com/mpayson/arcgis-node-res.git
+$ cd <sample>
+$ npm install
+$ npm start
+```
 
-For each sample:
-
-`$ cd <sample>`
-
-`$ npm install`
-
-`$ npm start`
-
-Samples:
-- **stream-service**: playground for streaming locations with websockets and displaying with ArcGIS JS API
+## Resources
+- **[Stream Service](/stream-service)**: playground for streaming locations with websockets and displaying with the [ArcGIS JS API](https://developers.arcgis.com/javascript/)
