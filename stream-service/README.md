@@ -1,5 +1,5 @@
 ## Stream Service
-> Playground for streaming locations with websockets and displaying with the [ArcGIS JS API](https://developers.arcgis.com/javascript/)Quick ArcGIS Node resources from conversations and personal tinkering
+> Playground for streaming locations with websockets and displaying with the [ArcGIS JS API](https://developers.arcgis.com/javascript/)
 
 ### Get Started
 
